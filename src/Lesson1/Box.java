@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Box<T extends Fruit> {
+
     private ArrayList<T> items;
 
     public Box(T... items) {
@@ -40,5 +41,7 @@ public class Box<T extends Fruit> {
     public void transfer(Box<? super T> box) {
         box.items.addAll(this.items);
         clear();
+
     }
+
 }
