@@ -1,4 +1,6 @@
-package Lesson1;
+package homeWork1;
+
+import homeWork1.Fruit;
 
 public class Orange extends Fruit {
 
