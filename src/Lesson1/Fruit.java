@@ -1,4 +1,4 @@
-package homeWork1;
+package Lesson1;
 
 public abstract class Fruit {
 
