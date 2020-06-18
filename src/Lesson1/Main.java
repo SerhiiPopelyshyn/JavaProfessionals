@@ -1,57 +1,76 @@
 package Lesson1;
 
-import java.util.ArrayList;
+/*
+Task 1
 import java.util.Arrays;
 
 public class Main {
+    static <T> T[] swap(T[] arr, int idx1, int idx2) {
+        if (idx1 < 0 || idx2 < 0 || idx1 >= arr.length || idx2 >= arr.length)
+            throw new IllegalArgumentException("Èíäåêñ çà ïðåäåëàìè ìàññèâà");
+
+        T o = arr[idx1];
+        arr[idx1] = arr[idx2];
+        arr[idx2] = o;
+        return arr;
+    }
 
     public static void main(String[] args) {
-        // Задание 1
-        Integer[] intArr = new Integer[2];
+        String[] strings = {"i0", "i1", "i2"};
+        strings = swap(strings, 1, 2);
+        System.out.println(Arrays.deepToString(strings));
+    }
+}
+ */
 
-        intArr[0] = 1;
-        intArr[1] = 2;
+/*
+Task 2
+import java.util.ArrayList;
 
-        System.out.println(Arrays.deepToString(intArr));
-        swap(intArr, 0, 1);
-        System.out.println(Arrays.deepToString(intArr));
-
-        // Задание 2
-        ArrayList<Integer> arrList = toArrayList(intArr);
-
-        // Задание 3
-        Apple apple1 = new Apple();
-        Apple apple2 = new Apple();
-        Apple apple3 = new Apple();
-
-        Orange orange1 = new Orange();
-        Orange orange2 = new Orange();
-
-        Box<Apple> box1 = new Box<Apple>(apple1, apple2, apple3);
-        Box<Orange> box2 = new Box<Orange>(orange1, orange2);
-
-        System.out.println(box1.compare(box2));
-
-        Box<Orange> box3 = new Box<Orange>();
-        box2.transfer(box3);
+public class Main {
+    static <E> ArrayList<E> arrayToArrayList(E[] array) {
+        ArrayList<E> arrayList = new ArrayList();
+        for (E element: array) {
+            arrayList.add(element);
+        }
+        return arrayList;
     }
 
-    /**
-     * Задание 1
-     * Написать метод, который меняет два элемента массива местами.
-     * (массив может быть любого ссылочного типа).
-     */
-    public static void swap(Object[] arr, int index1, int index2) {
-        Object tmp = arr[index1];
-        arr[index1] = arr[index2];
-        arr[index2] = tmp;
+    public static void main(String[] args) {
+        String[] strings = {"asdas", "dffdf", "33r3r"};
+        ArrayList<String> stringArrayList = arrayToArrayList(strings);
+        System.out.println(stringArrayList);
     }
 
-    /**
-     * Задание 2
-     * Написать метод, который преобразует массив в ArrayList.
-     */
-    public static <T> ArrayList<T> toArrayList(T[] arr) {
-        return new ArrayList<T>(Arrays.asList(arr));
+}
+ */
+
+
+//Task 3
+public class Main {
+    public static void main(String[] args) {
+        Box<Orange> orangeBox = new Box<>();
+        for (int i = 0; i < 4; i++) {
+            orangeBox.add(new Orange());
+        }
+        System.out.println("Box with 4 oranges weigths " + orangeBox.getWeight());
+
+        Box<Apple> appleBox = new Box<>();
+        for (int i = 0; i < 4; i++) {
+            appleBox.add(new Apple());
+        }
+        System.out.println("Box with 4 apples weigths " + appleBox.getWeight());
+
+        System.out.println("Compare boxes: " + appleBox.compare(orangeBox));
+
+        Box<Apple> appleBox6 = new Box<>();
+        for (int i = 0; i < 6; i++) {
+            appleBox6.add(new Apple());
+        }
+        System.out.println("Compare 6 apples and 4 oranges boxes: " + appleBox6.compare(orangeBox));
+
+        appleBox.move(appleBox6);
+        System.out.println("After move box1 weigths: " + appleBox.getWeight());
+        System.out.println("After move box2 weigths: " + appleBox6.getWeight());
     }
 }

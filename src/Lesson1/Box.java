@@ -1,44 +1,30 @@
 package Lesson1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Box<T extends Fruit> {
-    private ArrayList<T> items;
+public class Box <T extends Fruit> {
+    ArrayList<T> list = new ArrayList<>();
 
-    public Box(T... items) {
-        this.items = new ArrayList<T>(Arrays.asList(items));
+    void add(T fruit) {
+        list.add(fruit);
     }
 
-    public void add(T... items) {
-        this.items.addAll(Arrays.asList(items));
+    float getWeight() {
+        if (list.size() == 0) {
+            return 0.0f;
+        } else {
+            return list.size() * list.get(0).getFruitWeight();
+        }
     }
 
-    public void remove(T... items) {
-        for (T item: items) this.items.remove(item);
+    boolean compare(Box box) {
+        return (Math.abs(this.getWeight() - box.getWeight()) < 0.0000001);
     }
 
-    public ArrayList<T> getItems() {
-        return new ArrayList<T>(items);
-    }
-
-    public void clear() {
-        items.clear();
-    }
-
-    public float getWeight() {
-        if (items.size() == 0) return 0;
-        float weight = 0;
-        for (T item: items) weight += item.getWeight();
-        return weight;
-    }
-
-    public boolean compare(Box box) {
-        return this.getWeight() == box.getWeight();
-    }
-
-    public void transfer(Box<? super T> box) {
-        box.items.addAll(this.items);
-        clear();
+    void move(Box<T> box) {
+        for (T t: this.list) {
+            box.add(t);
+        }
+        this.list.clear();
     }
 }
